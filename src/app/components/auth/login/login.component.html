@@ -1,0 +1,47 @@
+<div class="login-wrapper">
+  <div class="login-card">
+    
+    <div class="logo-container">
+      <img src="/assets/Logo" alt="Logo"> 
+    </div>
+
+    <h1 class="login-title">Inicia Sesión</h1>
+
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          [(ngModel)]="credentials.username"
+          name="username"
+          #usernameInput="ngModel"
+          required
+          class="form-control"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input
+          type="password"
+          id="password"
+          [(ngModel)]="credentials.password"
+          name="password"
+          required
+          class="form-control"
+        />
+      </div>
+
+
+      <button type="submit" class="btn-login" [disabled]="loginForm.invalid || usernameInput.invalid">
+        Iniciar Sesión
+      </button>
+
+
+      <p class="error-msg" *ngIf="error">{{ error }}</p>
+
+    </form>
+  </div>
+</div>
