@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --color-bg-dark: #1A2F2F;      /* Azul petróleo muy oscuro (Base) */
+    --color-white: #F8FAFC;        /* Blanco humo para textos */
+    --color-success: #22C55E;      /* Verde dinero para pestaña activa */
+    --color-accent: #10B981;       /* Verde esmeralda para hovers */
+    --color-border: #2D4A4A;       /* Gris azulado para bordes */
+}

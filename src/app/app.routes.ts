@@ -34,6 +34,16 @@ export const routes: Routes = [
                     ),
                 canActivate: [roleGuard],
                 data: { roles: ['ADMIN_ACCESS'] },
+            },
+            {
+                path: 'gastos',
+                title: 'Gastos',
+                loadComponent: () =>
+                    import('./components/gastos/gastos.component').then(
+                        (m) => m.GastosComponent
+                    ),
+                canActivate: [roleGuard],
+                data: { roles: ['ADMIN_ACCESS'] },
             }
         ]
     },

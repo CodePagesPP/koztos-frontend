@@ -1,1 +1,34 @@
-<p>nav works!</p>
+<div class="layout-container">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="finance-logo">
+        <img src="" alt="logo">
+      </div>
+    </div>
+
+    <nav class="navigation">
+      <a routerLink="dashboard" 
+         routerLinkActive="active" 
+         class="nav-link">
+        Dashboard
+      </a>
+      
+      <a routerLink="gastos" routerLinkActive="active" class="nav-link">
+        Gastos
+      </a>
+      <a routerLink="configuracion" routerLinkActive="active" class="nav-link">
+        Configuración
+      </a>
+    </nav>
+
+    <footer class="sidebar-footer">
+      <div class="user-info">
+        <button class="btn-logout" (click)="logout()">Cerrar Sesión</button>
+      </div>
+    </footer>
+  </aside>
+
+  <main class="content-wrapper">
+    <router-outlet></router-outlet>
+  </main>
+</div>
