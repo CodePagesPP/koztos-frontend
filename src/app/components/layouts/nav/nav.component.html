@@ -1,30 +1,33 @@
 <div class="layout-container">
-  <aside class="sidebar">
+  <button class="hamburger" (click)="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <div class="sidebar-overlay" [class.active]="isMenuOpen" (click)="closeMenu()"></div>
+
+  <aside class="sidebar" [class.open]="isMenuOpen">
     <div class="brand">
       <div class="finance-logo">
-        <img src="" alt="logo">
+        <img src="assets/logo.png" alt="logo" class="logo-img">
       </div>
     </div>
 
     <nav class="navigation">
-      <a routerLink="dashboard" 
-         routerLinkActive="active" 
-         class="nav-link">
+      <a routerLink="dashboard" routerLinkActive="active" class="nav-link" (click)="handleNavLinkClick()">
         Dashboard
       </a>
-      
-      <a routerLink="gastos" routerLinkActive="active" class="nav-link">
+      <a routerLink="gastos" routerLinkActive="active" class="nav-link" (click)="handleNavLinkClick()">
         Gastos
       </a>
-      <a routerLink="configuracion" routerLinkActive="active" class="nav-link">
+      <a routerLink="configuracion" routerLinkActive="active" class="nav-link" (click)="handleNavLinkClick()">
         Configuración
       </a>
     </nav>
 
     <footer class="sidebar-footer">
-      <div class="user-info">
-        <button class="btn-logout" (click)="logout()">Cerrar Sesión</button>
-      </div>
+      <button class="btn-logout" (click)="logout()">Cerrar Sesión</button>
     </footer>
   </aside>
 
