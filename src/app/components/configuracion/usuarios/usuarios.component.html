@@ -1,0 +1,114 @@
+<div class="usuarios-container">
+    <div class="header-actions">
+        <button class="btn-nuevo" (click)="abrirModalNuevo()">+ Nuevo</button>
+
+        <div class="filters">
+            <div class="filter-group">
+                <label>Roles</label>
+                <select [(ngModel)]="filtroRol" (change)="onFilterChange()">
+                    <option value="ALL">TODOS</option>
+                    <option value="ADMIN">ADMINISTRADOR</option>
+                    <option value="OPERATIVO">OPERATIVO</option>
+                    <option value="APROBADOR">APROBADOR</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="paqari-table">
+            <thead>
+                <tr>
+                    <th>ID Usuario</th>
+                    <th>Usuario</th>
+                    <th>Nombre</th>
+                    <th>Datos Generales</th>
+                    <th>Rol</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of usuarios">
+                    <td>{{ user.id }}</td>
+                    <td><strong>{{ user.username }}</strong></td>
+                    <td>{{ user.name }} {{ user.lastName }}</td>
+                    <td>
+                        <div class="datos-gen">
+                            <span>DNI: {{ user.dni }}</span>
+                            <span>Sexo: {{ user.sex }}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="badge" [ngClass]="user.role.toLowerCase()">
+                            {{ user.role }}
+                        </span>
+                    </td>
+                    <td class="actions">
+                        <button class="btn-edit" (click)="editarUsuario(user)">
+                            <i class="edit-icon">✎</i>
+                        </button>
+                        <button class="btn-delete" (click)="eliminarUsuario(user.id)">
+                            <i class="delete-icon">🗑</i>
+                        </button>
+                    </td>
+                </tr>
+                <tr *ngIf="usuarios.length === 0 && !cargando">
+                    <td colspan="6" class="text-center">No se encontraron usuarios.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal-overlay" *ngIf="showModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>{{ isEditing ? 'Editar Usuario' : 'Registrar Nuevo Usuario' }}</h3>
+                <button class="close-btn" (click)="cerrarModal()">&times;</button>
+            </div>
+
+            <form [formGroup]="userForm" (ngSubmit)="guardarUsuario()">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>DNI</label>
+                        <input type="text" formControlName="dni" placeholder="8 dígitos">
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre de Usuario</label>
+                        <input type="text" formControlName="username">
+                    </div>
+                    <div class="form-group">
+                        <label>Nombres</label>
+                        <input type="text" formControlName="name">
+                    </div>
+                    <div class="form-group">
+                        <label>Apellidos</label>
+                        <input type="text" formControlName="lastName">
+                    </div>
+                    <div class="form-group">
+                        <label>Sexo</label>
+                        <select formControlName="sex">
+                            <option value="M">Masculino</option>
+                            <option value="F">Femenino</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Rol</label>
+                        <select formControlName="role">
+                            <option value="OPERATIVO">OPERATIVO</option>
+                            <option value="APROBADOR">APROBADOR</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Contraseña</label>
+                        <input type="password" formControlName="password">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel" (click)="cerrarModal()">Cancelar</button>
+                    <button type="submit" class="btn-save" [disabled]="userForm.invalid">Guardar Usuario</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

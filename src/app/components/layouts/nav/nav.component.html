@@ -21,9 +21,16 @@
       <a routerLink="gastos" routerLinkActive="active" class="nav-link" (click)="handleNavLinkClick()">
         Gastos
       </a>
-      <a routerLink="configuracion" routerLinkActive="active" class="nav-link" (click)="handleNavLinkClick()">
-        Configuración
-      </a>
+      <div class="nav-item-dropdown">
+        <a class="nav-link dropdown-toggle" (click)="toggleSubmenu('config')">
+          Configuración
+        </a>
+        <div class="submenu" [class.show]="activeSubmenu === 'config'">
+          <a routerLink="configuracion/usuarios" routerLinkActive="active" class="submenu-link" (click)="handleNavLinkClick()">
+            Usuarios
+          </a>
+          </div>
+      </div>
     </nav>
 
     <footer class="sidebar-footer">

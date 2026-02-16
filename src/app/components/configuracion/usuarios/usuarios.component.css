@@ -1,0 +1,174 @@
+.usuarios-container {
+    padding: 20px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 20px;
+}
+
+.btn-nuevo {
+    background-color: #00a8e8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-width: 200px;
+}
+
+.table-responsive {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.paqari-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.paqari-table th {
+    background-color: #e9ecef;
+    padding: 12px;
+    text-align: left;
+    font-size: 0.85rem;
+    color: #495057;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.paqari-table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    font-size: 0.9rem;
+}
+
+.datos-gen span {
+    display: block;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.badge.admin {
+    background-color: #ffd700;
+    color: #000;
+}
+
+.badge.operativo {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.badge.aprobador {
+    background-color: #17a2b8;
+    color: #fff;
+}
+
+.actions button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-right: 8px;
+    font-size: 1.1rem;
+}
+
+.btn-edit {
+    color: #007bff;
+}
+
+.btn-delete {
+    color: #dc3545;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(2px);
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    width: 500px;
+    max-width: 90%;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.full-width {
+    grid-column: span 2;
+}
+
+.modal-footer {
+    margin-top: 25px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btn-save {
+    background: #00a8e8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-save:disabled {
+    background: #ccc;
+}

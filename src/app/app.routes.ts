@@ -44,6 +44,21 @@ export const routes: Routes = [
                     ),
                 canActivate: [roleGuard],
                 data: { roles: ['ADMIN_ACCESS'] },
+            },
+            {
+                path: 'configuracion',
+                canActivate: [roleGuard],
+                data: { roles: ['ADMIN_ACCESS'] },
+                children: [
+                    {
+                        path: 'usuarios',
+                        title: 'Gestión de Usuarios',
+                        loadComponent: () =>
+                            import('./components/configuracion/usuarios/usuarios.component').then(
+                                (m) => m.UsuariosComponent
+                            ),
+                    },
+                ]
             }
         ]
     },
