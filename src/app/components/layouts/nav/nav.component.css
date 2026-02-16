@@ -150,3 +150,30 @@
     display: block;
   }
 }
+
+.nav-item-dropdown {
+  position: relative;
+}
+
+.submenu {
+  display: none;
+  background-color: #1a2a24; /* Un tono más claro que tu sidebar */
+  padding-left: 1rem;
+}
+
+.submenu.show {
+  display: block;
+}
+
+.submenu-link {
+  display: block;
+  padding: 10px 15px;
+  color: #a0a0a0;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.submenu-link:hover, .submenu-link.active {
+  color: #fff;
+  background-color: #2d4a3e;
+}

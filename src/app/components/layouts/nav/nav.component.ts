@@ -10,12 +10,18 @@ import { AuthService } from '../../../core/services/auth.service';
   styleUrl: './nav.component.css'
 })
 export class NavComponent {
+  activeSubmenu: string | null = null;
   isMenuOpen = window.innerWidth > 768;
+
   constructor(
     private authService: AuthService
   ) {}
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  toggleSubmenu(menu: string) {
+    this.activeSubmenu = this.activeSubmenu === menu ? null : menu;
   }
 
   closeMenu() {
