@@ -1,1 +1,110 @@
-<p>gastos works!</p>
+<div class="list-container">
+  <div class="header-actions">
+    <div class="left-actions">
+      <span>Realizar nuevo gasto:</span>
+      <button class="btn-primary" (click)="abrirModalNuevo()">+ Nuevo</button>
+    </div>
+    <div class="right-actions">
+      <div class="action-group">
+        <label>Exportar</label>
+        <div style="display: flex; gap: 4px;">
+           <button class="btn-danger">PDF</button>
+           <button class="btn-success">XLS</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="filters-row">
+    <div class="filter-item">
+      <label>Ubicación:</label>
+      <select [(ngModel)]="filtroLocal" (change)="cargarGastos()">
+        <option value="TRUJILLO">TRUJILLO</option>
+        <option value="LIMA">LIMA</option>
+      </select>
+    </div>
+    <div class="filter-item">
+      <label>Fecha Registro</label>
+      <div class="form-control-group">
+        <input type="text" [(ngModel)]="filtroFecha" placeholder="01/02/2026 - 16/02/2026">
+        <button class="btn-success">⇄</button>
+      </div>
+    </div>
+    <div class="filter-item">
+      <label>Moneda</label>
+      <select [(ngModel)]="filtroMoneda" (change)="cargarGastos()">
+        <option value="Sol">Sol</option>
+        <option value="Dolar">Dólar</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="table-controls">
+    <div>
+      Mostrar 
+      <select [(ngModel)]="pageSize" (change)="cargarGastos()">
+        <option [value]="10">10</option>
+        <option [value]="20">20</option>
+      </select> 
+      resultados
+    </div>
+    <div>
+      <input type="text" [(ngModel)]="busquedaGlobal" placeholder="BUSCAR" (keyup.enter)="cargarGastos()">
+      <button (click)="cargarGastos()">Q</button>
+    </div>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Local</th>
+        <th>Fecha De Emisión</th>
+        <th>Tipo De Gasto</th>
+        <th>Documento</th>
+        <th>Persona Afectada</th>
+        <th>Descripción</th>
+        <th>Subtotal</th>
+        <th>Impuesto</th>
+        <th>Total</th>
+        <th>Usuario</th>
+        <th>F. Registro</th>
+        <th>Condición</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="!gastos || gastos?.length === 0">
+        <td colspan="15" class="text-center">No se encontraron registros</td>
+      </tr>
+      <tr *ngFor="let g of gastos">
+        <td>{{g.id}}</td>
+        <td>{{g.local}}</td>
+        <td>{{g.fechaEmision}}</td>
+        <td>{{g.tipoGasto.nombre}}</td>
+        <td>{{g.documentoSerie}} - {{g.documentoNumero}}</td>
+        <td>{{g.personaAfectada}}</td>
+        <td>{{g.descripcion}}</td>
+        <td>{{g.subtotal}}</td>
+        <td>{{g.impuesto}}</td>
+        <td>{{g.total}}</td>
+        <td>{{g.usuario}}</td>
+        <td>{{g.fechaRegistro}}</td>
+        <td>{{g.condicion}}</td>
+        <td>{{g.estado}}</td>
+        <td>...</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <span>Mostrando resultados</span>
+    <div class="page-buttons">
+      <button (click)="cambiarPagina(-1)" [disabled]="currentPage === 0">&lt;</button>
+      <button (click)="cambiarPagina(1)"> &gt;</button>
+    </div>
+  </div>
+</div>
+
+<app-gasto-modal *ngIf="showGastoModal" (close)="cerrarModal()"></app-gasto-modal>

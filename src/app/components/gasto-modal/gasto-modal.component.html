@@ -1,0 +1,96 @@
+<div class="modal-overlay">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 style="margin:0; font-size: 18px;">Nuevo Gasto</h2>
+      <button class="modal-close" (click)="close.emit()">×</button>
+    </div>
+    <div class="modal-body">
+      
+      <div class="form-grid-2-col">
+        <div class="form-grid">
+          <label class="form-label">Local</label>
+          <select [(ngModel)]="gasto.local"><option value="TRUJILLO">TRUJILLO</option></select>
+        </div>
+        <div class="form-grid">
+          <label class="form-label">Fecha de emisión</label>
+          <input type="date" [(ngModel)]="gasto.fechaEmision">
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <label class="form-label">Tipo de Gasto</label>
+        <div class="form-control-group">
+          <select [(ngModel)]="gasto.tipoGasto">
+            <option [ngValue]="null">Seleccione</option>
+            <option *ngFor="let t of tiposGasto" [ngValue]="t">{{t.nombre}}</option>
+          </select>
+          <button class="btn-success" (click)="abrirNuevoTipoGasto()">+</button>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <label class="form-label">Persona afectada</label>
+        <select [(ngModel)]="gasto.personaAfectada"><option value="Seleccione">Seleccione</option></select>
+      </div>
+
+      <hr style="border: 0; border-top: 1px solid var(--color-border); margin: 16px 0;">
+
+      <div class="form-grid-2-col">
+        <div>
+          <div class="form-grid" style="grid-template-columns: 80px 1fr;">
+            <label class="form-label">Condición</label>
+            <select [(ngModel)]="gasto.condicion"><option value="Seleccione">Seleccione</option></select>
+          </div>
+          <div class="form-grid" style="grid-template-columns: 80px 1fr;">
+            <label class="form-label">Documento</label>
+            <select><option value="Seleccione">Seleccione</option></select>
+          </div>
+        </div>
+        <div>
+          <div class="form-grid" style="grid-template-columns: 80px 1fr;">
+            <label class="form-label">Gravable</label>
+            <select [(ngModel)]="gasto.gravable"><option value="NO">NO</option><option value="SI">SI</option></select>
+          </div>
+          <div class="form-control-group">
+            <input type="text" placeholder="SERIE" [(ngModel)]="gasto.documentoSerie">
+            <input type="text" placeholder="NUMERO" [(ngModel)]="gasto.documentoNumero">
+          </div>
+        </div>
+      </div>
+
+      <hr style="border: 0; border-top: 1px solid var(--color-border); margin: 16px 0;">
+
+      <div class="form-grid">
+        <label class="form-label">Moneda</label>
+        <select [(ngModel)]="gasto.moneda">
+          <option value="Seleccione">Seleccione</option>
+          <option value="Sol">Sol</option>
+          <option value="Dolar">Dólar</option>
+        </select>
+      </div>
+      <div class="form-grid">
+        <label class="form-label">Medio de Pago</label>
+        <select [(ngModel)]="gasto.medioPago"><option value="Seleccione">Seleccione</option></select>
+      </div>
+      <div class="form-grid">
+        <label class="form-label">Cuenta</label>
+        <select [(ngModel)]="gasto.cuenta"><option value="Seleccione">Seleccione</option></select>
+      </div>
+      <div class="form-grid">
+        <label class="form-label">Descripción</label>
+        <textarea rows="3" [(ngModel)]="gasto.descripcion"></textarea>
+      </div>
+      <div class="form-grid">
+        <label class="form-label">Total</label>
+        <input type="number" [(ngModel)]="gasto.total" style="background:#f1f5f9;">
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button class="btn-success" (click)="guardar()">🖫 F6 Guardar</button>
+      <button class="btn-danger" (click)="close.emit()">✖ Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<app-tipo-gasto-modal *ngIf="showTipoGastoModal" (close)="cerrarTipoGastoModal()"></app-tipo-gasto-modal>
